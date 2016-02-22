@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue</title>
+
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.min.js"></script>
+</head>
+<body>
+
+	<div id="app">
+		<h1>{{message}}</h1>
+		<!-- <textarea v-model="message"> -->
+		<textarea name="" id="" v-model="message"></textarea>
+
+		<pre>{{$data | json }}</pre>
+	</div>
+
+	<script>
+	new Vue({
+		el: '#app',
+		data: {
+			message : 'Hello World'
+		}
+	})
+	</script>
+	
+</body>
+</html>

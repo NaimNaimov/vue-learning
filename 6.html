@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue</title>
+
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<style>
+	.bottom-spaced { margin-bottom: 10px; }
+	.container { margin: 20px;}
+	</style>
+</head>
+<body class="container" id="app">
+	<div class="row">
+		<div class="col-sm-6">
+			<div v-for="plan in plans">
+				<plan :plan="plan" :active.sync="active"></plan>
+			</div>
+		</div>
+
+		<div class="col-sm-6">
+			
+			
+		</div>
+	</div>
+	
+
+	
+	<template id="plan">
+		<div class="row bottom-spaced">
+			<div class="col-xs-2">
+				<strong>{{plan.name}}</strong>
+				<span>{{plan.price}}/month</span>
+			</div>
+			<div class="col-xs-6">
+				<span @click="setActive" v-show="!isActive" class="btn {{className}}">
+					{{buttonName}}
+				</span>
+
+				<span v-else class="btn btn-primary">Active Plan</span>
+			</div>
+			
+		</div>
+		
+	</template>
+	
+
+	<script>
+	var vm = new Vue({
+		el: "#app",
+		data: {
+			plans: [
+				{ name: 'Enterprice', price: 100},
+				{ name: 'Pro', price: 80},
+				{ name: 'Personal', price: 40},
+				{ name: 'Free', price: 0}
+			],
+			active: {}
+		},
+
+		components: {
+			plan: {
+				template : "#plan",
+				props: ['plan', 'active'],
+				
+				methods: {
+					setActive: function() {
+						this.active = this.plan;
+					}
+				},
+				computed: {
+					buttonName: function(){
+						var name = 'Upgrade';
+						if (this.active.price > this.plan.price) {
+							name = 'Downgrade';
+						};
+						return name;
+					},
+					isActive: function() {
+						return this.active.name == this.plan.name;
+					},
+					className: function(){
+						var className = 'btn-success';
+						if (this.active.price > this.plan.price) {
+							className = 'btn-danger';
+						};
+
+						return className
+					}
+				}
+			}
+		}
+	
+		
+	})
+
+	</script>
+	
+</body>
+</html>

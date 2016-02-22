@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue</title>
+
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+
+	<div id="app">
+		<counter subject="HEading1"></counter>
+		<counter subject="HEading2"></counter>
+	</div>
+
+	<template id="counter-template">
+		<h1>{{subject}}</h1>
+		<button @click.prevent="count+=1">{{count}}</button>
+	</template>
+
+	<script>
+	Vue.component('counter', {
+		template: '#counter-template',
+		props: ['subject'],
+		data: function(){
+			return {count: 0 };
+		}
+	})
+	var vm = new Vue({
+		el: "#app"
+	})
+	
+	</script>
+	
+</body>
+</html>

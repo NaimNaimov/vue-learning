@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue</title>
+
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+
+	<div id="app">
+		<h1>{{submitText}}</h1>
+		<a href="#" @click.prevent="counterUpdate">This is clicked {{ clicked }} times </a>
+		<form action="" @submit.prevent="submitHandler">
+			<button type="submit">{{submitText}}</button>
+		</form>
+	</div>
+
+	<script>
+	new Vue({
+		el: "#app",
+		data : {
+			submitText : 'Submit ME!',
+			clicked: 0
+		},
+		methods :{
+			submitHandler: function() {
+				alert('YEsah');
+			},
+			counterUpdate: function() {
+				this.clicked += 1;
+			}
+		}
+	
+		
+	})
+	</script>
+	
+</body>
+</html>
